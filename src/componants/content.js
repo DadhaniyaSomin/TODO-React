@@ -39,12 +39,19 @@ function Layout() {
 
   const hnadleCheck =  (id) => {
        const listitems = items.map((item) => item.id === id ? {...item , checked : !item.checked} : item);
-       setItems(listitems);        
+       setItems(listitems); 
+       localStorage.setItem('shopinglist',JSON.stringify(listitems));        
   }
 
+  const handleDelete =(id) =>{
+    const  listitems = items.filter((item)=>item.id !== id );
+    setItems(listitems); 
+       localStorage.setItem('shopinglist',JSON.stringify(listitems));        
+  }
 
   return (
     <main>
+      {items.length ? (
       <ul>
         {items.map((item) => (
           <li className="item" key={item.id}>
@@ -52,15 +59,22 @@ function Layout() {
                     type="checkbox"
                     onChange={() => hnadleCheck(item.id)} 
                     checked={item.checked} />
-            <label>{item.items}</label>
-
-                 <button>Delete</button>
+            <label
+                // style={{ (item.checked)  ? {textDecoration: ' line-through'} : null }}
+                onDoubleClick={() => hnadleCheck(item.id)}
+            >{item.items}</label>
+                 <button onClick={()=>handleDelete(item.id)}>Delete</button>
             {/* <FaTrashAlt 
                 role="button" 
                 tabIndex="0" /> */}
           </li>
         ))}
       </ul>
+      ): (
+        <p style={{ margin: '2rem' }}>
+                 Your  List is Empty.
+        </p>
+      ) }
     </main>
     // <div>
     //   <p>Hello , {name}</p>
