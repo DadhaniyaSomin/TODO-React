@@ -1,56 +1,41 @@
 import "./App.css";
-import { useState } from "react";
+import { useState ,useEffect } from "react";
 import Header from "./componants/header";
 import Layout from "./componants/content";
 import Footer from "./componants/footer";
 import AddItem from "./componants/AddItem";
 
 function App() {
-  //
-
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      checked: false,
-      data: "askbdkjasbd",
-    },
-    {
-      id: 2,
-      checked: true,
-      data: "askbdkjasbd",
-    },
-    {
-      id: 3,
-      checked: true,
-      data: "askbdkjasbd",
-    },
-  ]);
+  
+  const [items, setItems] = useState( JSON.parse(localStorage.getItem('shopinglist')) || []) ;
 
   const [newItem, setNewItem] = useState();
 
-  const setAndSaveItem = (data) => {
-      setItems(data);
-      localStorage.setItem("shopinglist", JSON.stringify(data));
-  }
+  useEffect(() => {
+    //  console.log("changes");
+    console.log("asd");
+    localStorage.setItem("shopinglist", JSON.stringify(items));
+  },[items])
+
 
   const addItem = (data) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
     const myNewItem = { id, checked: false, data };
     const listitems = [...items, myNewItem];
     console.log(listitems);
-    setAndSaveItem(listitems);
+    setItems(listitems);
   };
 
   const handleCheck = (id) => {
     const listitems = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
-    setAndSaveItem(listitems);
+    setItems(listitems);
   };
 
   const handleDelete = (id) => {
     const listitems = items.filter((item) => item.id !== id);
-    setAndSaveItem(listitems);
+    setItems(listitems);
   };
 
   const handleSubmit = (e) => {
@@ -58,7 +43,7 @@ function App() {
     if (!newItem) return;
     addItem(newItem);
     setNewItem("");
-    // setAndSaveItem
+    // setItems
   };
 
   return (
