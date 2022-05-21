@@ -1,22 +1,36 @@
 import "./App.css";
-import { useState ,useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "./componants/header";
 import Layout from "./componants/content";
 import Footer from "./componants/footer";
 import AddItem from "./componants/AddItem";
 
 function App() {
-  
-  const [items, setItems] = useState( JSON.parse(localStorage.getItem('shopinglist')) || []) ;
+  const API_URL = "http://localhost:3500/items";
+
+  const [items, setItems] = useState([]);
 
   const [newItem, setNewItem] = useState();
 
   useEffect(() => {
-    //  console.log("changes");
-    console.log("asd");
-    localStorage.setItem("shopinglist", JSON.stringify(items));
-  },[items])
+     const FetchItem = async() =>
+     {
+       try{
+        const res  = await fetch(API_URL);
+        console.log(res);
+        if(! res.ok) throw Error("Did not get exepted data");
+        const listitems = await res.json();
+        console.log(listitems);
+        setItems(listitems);
+       }
+       catch(err) 
+       {
+         console.log(err.stack);
+       }
+     }
 
+     (async() => await FetchItem())();
+  },[])
 
   const addItem = (data) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;

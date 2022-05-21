@@ -3,22 +3,22 @@
         {
             "id" : 1 ,
             "checked" : true,
-            "item" : "milk"
+            "items" : "milk"
         },
         {
             "id" : 2 ,
             "checked" : true,
-            "item" : "milk"
+            "items" : "milk"
         },
         {
             "id" : 3 ,
             "checked" : true,
-            "item" : "milk"
+            "items" : "milk"
         },
         {
             "id" : 4 ,
             "checked" : true,
-            "item" : "milk"
-        },
+            "items" : "milk"
+        }
     ]
 }
