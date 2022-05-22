@@ -18,8 +18,7 @@ function AddItem({newItem,setNewItem,handleSubmit})
            <button
             type="submit"
              aria-label="Add Item"
-           />
-           
+           /> 
         </form>
     );
 }

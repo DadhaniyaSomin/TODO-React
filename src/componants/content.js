@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 function Layout({items , handleCheck , handleDelete}) {
 
   return (
-    <main>
+    <>
       {items.length ? (
         <ItemList
         items={items}
@@ -14,7 +14,7 @@ function Layout({items , handleCheck , handleDelete}) {
       ) : (
         <p style={{ margin: "2rem" }}>Your List is Empty.</p>
       )}
-    </main>
+      </>
   );
 }
 

@@ -1,24 +1,9 @@
 {
-    "items" : [
-        {
-            "id" : 1 ,
-            "checked" : true,
-            "items" : "milk"
-        },
-        {
-            "id" : 2 ,
-            "checked" : true,
-            "items" : "milk"
-        },
-        {
-            "id" : 3 ,
-            "checked" : true,
-            "items" : "milk"
-        },
-        {
-            "id" : 4 ,
-            "checked" : true,
-            "items" : "milk"
-        }
-    ]
+  "items": [
+    {
+      "id": 1,
+      "checked" : false,
+      "items": "Milk"
+    }
+  ]
 }
